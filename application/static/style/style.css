@@ -11,10 +11,10 @@ li {
 
 span,
 p,
-h1 {
-    font-style: 'Roboto';
+h1,
+li {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 18px;
     color: black;
 }
 
@@ -177,6 +177,33 @@ img {
 
 .errors {
     position: absolute;
+}
+
+
+
+/* CAT INFO */
+
+.main__left-content {
+    height: 592px;
+    width: auto;
+}
+
+.main__right-content {
+    width: calc(100% - 486px);
+    padding: 30px;
+}
+
+.cat-info-wrapper,
+.main__right-content {
+    justify-content: space-between;
+}
+
+.content-info {
+    width: 200px;
+}
+
+.content-description {
+    width: calc(100% - 250px);
 }
 
 @media screen and (max-width: 1300px) {

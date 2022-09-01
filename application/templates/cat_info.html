@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="container">
+    <div class="cat-info-wrapper flex">
+        <div class="main__left-content">
+            <img src="{{cat.path_url}}" alt="Фото кота">
+        </div>
+        <div class="main__right-content flex">
+            <div class="content-info">
+                <ul class="content-info__items">
+                    <li class="content-info__item">Имя: {{cat.name}}</li>
+                    <li class="content-info__item">Порода: {{cat.breed.name}}</li>
+                    {% if cat.gender_male %}
+                    <li class="content-info__item"> Пол: мужской</li>
+                    {% else %}
+                    <li class="content-info__item"> Пол: женский</li>
+                    {% endif %}
+                    <li class="content-info__item">Возраст: {{cat.age}}</li>
+                </ul>
+            </div>
+            <div class="content-description">
+                <span>Описание: {{cat.description}}</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}

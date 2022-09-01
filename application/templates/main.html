@@ -1,175 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="static/style/style.css">
-    <title>Document</title>
-</head>
-
-<body>
-    <!-- <ul>
-        {% for item in items %}
-        <li>{{item}}</li>
-        {% endfor %}
-    </ul>
-    <form action="/" method="POST">
-        {{ form.csrf_token }}
-        <h3 class="text-form">Add user</h3>
-        <div>
-            <label for="name">{{ form.name.label }}</label>
-            <input type="text" id="name" name="user_name">
-            {% if form.name.errors %}
-            <ul class="errors">
-                {% for error in form.name.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-        <div>
-            <label for="breed">{{ form.breed.label }}</label>
-            <input type="text" id="name" name="breed">
-            {% if form.breed.errors %}
-            <ul class="errors">
-                {% for error in form.breed.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-        <div>
-            <label for="age">{{ form.age.label }}</label>
-            <input type="text" id="name" name="age">
-            {% if form.age.errors %}
-            <ul class="errors">
-                {% for error in form.age.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-        <div>
-            <label for="description">{{ form.description.label }}</label>
-            <input type="text" id="name" name="description">
-            {% if form.description.errors %}
-            <ul class="errors">
-                {% for error in form.description.errors %}
-                <li>{{ error }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </div>
-
-        <select name="selecrs">
-            <option name='dd'>Пункт 1</option>
-            <option name="dd2s">Пункт 2</option>
-        </select>
-
-        <div class="button">
-            <button type="submit">add</button>
-        </div>
-    </form> -->
-    <header class="header">
-        <div class="container">
-            <div class="header-wrapper">
-                <form action="/" method="POST" id="main-form">
-                    {{ form.csrf_token }}
-                    <div class="header-sorted flex">
-                        <div class="header-sorted__wrapper">
-                            <labael class="sorted">Сортировать по: </labael>
-                            <select class="header__select" name='sorted' form="main-form">
-                                <option name="breed" value="breed">Порода</option>
-                                <option name="age" value="age">Возраст</option>
-                                <option name="default" value="default">По умолчанию</option>
-                            </select>
+{% extends "base.html" %}
+{% block main %}
+<div class="container main-container">
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            {% for cat in cats %}
+            <div class="swiper-slide">
+                <a href="/cat-{{cat.id}}" class="main-link__cat">
+                    <div class="card-cat">
+                        <div class="card-cat__wrapper">
+                            <img src={{cat.path_url}} alt="Кошка" class="card-car__img">
+                            <span class="card-cat__name">{{cat.name}}</span>
                         </div>
                     </div>
-                    <div class="header-search">
-                        <div class="header-search__wrapper flex">
-                            <ul class="header-items flex">
-                                <li class="header-item">
-                                    <input class="header__input" placeholder='Порода' type="text" id="breed"
-                                        name="breed">
-                                    {% if form.breed.errors %}
-                                    <ul class="errors">
-                                        {% for error in form.breed.errors %}
-                                        <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
-                                </li>
-                                <li class="header-item">
-                                    <input class="header__input" placeholder='Имя' type="text" id="name" name="name">
-                                    {% if form.name.errors %}
-                                    <ul class="errors">
-                                        {% for error in form.name.errors %}
-                                        <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
-                                </li>
-                                <li class="header-item">
-                                    <input class="header__input" placeholder='Возраст' type="text" id="age" name="age">
-                                    {% if form.age.errors %}
-                                    <ul class="errors">
-                                        {% for error in form.age.errors %}
-                                        <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                    {% endif %}
-                                </li>
-                                <li class="header-item header-item-big">
-                                    <textarea class="header__input" placeholder='Описание' type="text" id="description"
-                                        name="description"></textarea>
-                                </li>
-                            </ul>
-                            <div class="header-wrapper__btn">
-                                <button class="header-search__btn" type="submit">Поиск</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
+                </a>
             </div>
+            {% endfor %}
+
+
         </div>
-    </header>
-    <main>
-        <div class="container main-container">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    {% for cat in cats %}
-                    <div class="swiper-slide">
-                        <a href="/cat-{{cat.id}}" class="main-link__cat">
-                            <div class="card-cat">
-                                <div class="card-cat__wrapper">
-                                    <img src={{cat.path_url}} alt="Кошка" class="card-car__img">
-                                    <span class="card-cat__name">{{cat.name}}</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    {% endfor %}
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+{% endblock %}
 
-
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <div class="container">
-            <img src="static/img/paws-cat.png" alt="">
-        </div>
-    </footer>
-</body>
-
-
+{% block scripts %}
 <!-- Swiper JS -->
 <script src="static/scripts/swiper-bundle.min.js"></script>
 <!-- Initialize Swiper -->
@@ -192,7 +47,7 @@
     });
 
 </script>
-
+{% endblock %}
 
 
 </script>

@@ -7,14 +7,14 @@ from wtforms.validators import DataRequired, ValidationError, Optional
 def age_is_real(form, field):
     if field.data:
         if field.data < 0:
-            raise ValidationError("age cat >= 0")
+            raise ValidationError("Возраст >= 0")
 
 
 def name_is_real(form, field):
     print(field.data.isupper())
     if field.data:
         if not field.data[0].isupper():
-            raise ValidationError("Имя с заглавной")
+            raise ValidationError("Имя с заглавной буквы ")
 
 
 class CatForm(FlaskForm):

@@ -13,8 +13,7 @@ csrf = CSRFProtect(app)
 @app.route("/", methods=["GET", "POST"])
 def main_rout():
     form: FlaskForm = CatForm()
-    print("request.data", request.form)
-    print(form.validate_on_submit())
+
     if form.validate_on_submit():
 
         return (
@@ -28,7 +27,9 @@ def main_rout():
 
 @app.route("/cat-<id>", methods=["GET"])
 def cat_info_route(id):
-    return f"name={id}"
+    form: FlaskForm = CatForm()
+    cat_obj = cat_models.get_cat_by_id(id)
+    return render_template("cat_info.html", form=form, cat=cat_obj)
 
 
 if __name__ == "__main__":

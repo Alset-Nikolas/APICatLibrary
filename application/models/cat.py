@@ -16,6 +16,10 @@ def get_cat(name: str, age: int, breed: str):
     )
 
 
+def get_cat_by_id(id):
+    return session.query(CatModel).filter(CatModel.id == id).first()
+
+
 def add_cat(cat: obj.Cat):
     breed_id = models_breed.create_if_not_exist(cat.breed)
     new_cat = CatModel(
