@@ -64,7 +64,7 @@ img {
 
 /* HEADER */
 .header {
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .header-wrapper {
@@ -121,6 +121,22 @@ img {
 /* MAIN */
 .main-container {
     max-width: 1400px;
+}
+
+.link-main_menu {
+    margin-bottom: 50px;
+}
+
+.link-main_menu a {
+    text-decoration: none;
+    /* Убираем подчеркивание */
+    border-bottom: 1px dashed #000080;
+    /* Добавляем свою линию */
+}
+
+.link-main_menu a:hover {
+    color: #f00000;
+    /* Цвет ссылки при наведении на нее курсора */
 }
 
 .swiper {
