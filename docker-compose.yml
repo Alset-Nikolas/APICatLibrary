@@ -4,12 +4,10 @@ version: '3'
 # docker-compose -f docker-compose.yml up -d
 services:
   app:
-    # restart: always
+    restart: always
     build: ./app
     container_name: first
     command: python main.py run -h 0.0.0.0 # WSGI server
-    # environment:
-    #   - DATABASE_URL=postgresql+psycopg2://postgres:qwerty@db:5432/cats # путь до бд, см. db service
     volumes:
       - ./app:/app
     expose:

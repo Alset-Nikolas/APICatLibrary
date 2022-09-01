@@ -23,7 +23,8 @@
     1. git clone https://github.com/Alset-Nikolas/APICatLibrary.git
     2. docker-compose build
     3. docker-compose up 
-    
+    4. http://127.0.0.1:5000/
+
 # Пояснение к структуре
     application (Папка с проектом)
         |---> dataclass (dataclass обьекты )
