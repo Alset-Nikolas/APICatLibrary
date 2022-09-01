@@ -21,9 +21,10 @@
 
 # Запуск
     1. git clone https://github.com/Alset-Nikolas/APICatLibrary.git
+    2. cd APICatLibrary
     2. docker-compose build
     3. docker-compose up 
-    4. http://127.0.0.1:5000/
+    4. google -> http://127.0.0.1:5000/
 
 
 # Иллюстрация работы:
