@@ -1,3 +1,4 @@
+import typing
 from models import session, CatModel, BreedModel
 import models.breed as models_breed
 import dataclass.cat as obj
@@ -38,29 +39,24 @@ def get_all_cat():
     )
 
 
-def filter_by_breed(breed):
-    return session.query(CatModel).filter(CatModel.breed == breed)
+def get_call_cat_query():
+    return session.query(CatModel)
 
 
-def filter_by_name(name):
-    return session.query(CatModel).filter(CatModel.name == name)
-
-
-def filter_by_age(age):
-    return session.query(CatModel).filter(CatModel.age == age)
-
-
-def filter_by_desc(desc):
-    return session.query(CatModel).filter(CatModel.description.like(f"%{desc}%"))
-
-
-def get_all_cats_sort_by_breed():
-    return session.query(CatModel).order_by(CatModel.breed).all()
-
-
-def get_all_cats_sort_by_age():
-    return session.query(CatModel).order_by(CatModel.age).all()
-
-
-def get_cats_by_filters():
-    pass
+def get_cats_by_filters(param: typing.Dict):
+    query = get_call_cat_query()
+    if param["name"]:
+        query = query.filter(CatModel.name == param["name"])
+    if param["age"]:
+        query = query.filter(CatModel.age == param["age"])
+    if param["description"]:
+        query = query.filter(CatModel.description.like(f"%{param['description']}%"))
+    if param["breed"]:
+        breed = models_breed.get_breed_by_name(param["breed"])
+        if breed:
+            query = query.filter(CatModel.breed_id == breed.id)
+        else:
+            return []
+    if param["sorted"]:
+        pass
+    return query.all()

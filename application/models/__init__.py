@@ -44,7 +44,7 @@ class BreedModel(Base):
 class CatModel(Base):
     __tablename__ = "cats"
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False, unique=True)
+    name = Column(String, nullable=False)
     path_url = Column(String, nullable=False, unique=True)
 
     gender_male = Column(Boolean, nullable=False)

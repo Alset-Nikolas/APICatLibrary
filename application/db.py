@@ -1,4 +1,4 @@
-from sqlalchemy_utils import database_exists, create_database
+from sqlalchemy_utils import database_exists, create_database, drop_database
 from log import logger
 from models import Base, engine
 import settings
@@ -19,6 +19,7 @@ def init_db() -> None:
     """
     Создаем таблицы
     """
+    drop_database(engine.url)
     logger.info("init data base")
     if not database_exists(engine.url):
         logger.info("create db cats.db")

@@ -22,9 +22,7 @@ def get_breed_by_name(name_bread) -> BreedModel:
 
 
 def create_if_not_exist(name_bread):
-    print(name_bread)
     breed = get_breed_by_name(name_bread)
-    print(breed)
     if breed is None:
         breed = add_breed(name_bread)
     return breed.id

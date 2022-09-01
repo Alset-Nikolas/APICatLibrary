@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="static/style/style.css">
     <title>Document</title>
 </head>
 
@@ -77,14 +77,15 @@
     <header class="header">
         <div class="container">
             <div class="header-wrapper">
-                <form action="/" method="POST">
+                <form action="/" method="POST" id="main-form">
+                    {{ form.csrf_token }}
                     <div class="header-sorted flex">
                         <div class="header-sorted__wrapper">
                             <labael class="sorted">Сортировать по: </labael>
-                            <select class="header__select">
-                                <option>породе</option>
-                                <option>возрасту</option>
-                                <option>умолчанию</option>
+                            <select class="header__select" name='sorted' form="main-form">
+                                <option name="breed">Порода</option>
+                                <option name="age">Возраст</option>
+                                <option name="lll">По умолчанию</option>
                             </select>
                         </div>
                     </div>
@@ -94,16 +95,37 @@
                                 <li class="header-item">
                                     <input class="header__input" placeholder='Порода' type="text" id="breed"
                                         name="breed">
+                                    {% if form.breed.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.breed.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
                                 </li>
                                 <li class="header-item">
                                     <input class="header__input" placeholder='Имя' type="text" id="name" name="name">
+                                    {% if form.name.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.name.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
                                 </li>
                                 <li class="header-item">
                                     <input class="header__input" placeholder='Возраст' type="text" id="age" name="age">
+                                    {% if form.age.errors %}
+                                    <ul class="errors">
+                                        {% for error in form.age.errors %}
+                                        <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
                                 </li>
                                 <li class="header-item header-item-big">
-                                    <textarea class="header__input" placeholder='Описание' type="text" id="desc"
-                                        name="desc"></textarea>
+                                    <textarea class="header__input" placeholder='Описание' type="text" id="description"
+                                        name="description"></textarea>
                                 </li>
                             </ul>
                             <div class="header-wrapper__btn">
@@ -120,77 +142,36 @@
         <div class="container main-container">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
+                    {% for cat in cats %}
+                    <div class="swiper-slide">
+                        <a href="/cat-{{cat.id}}" class="main-link__cat">
+                            <div class="card-cat">
+                                <div class="card-cat__wrapper">
+                                    <img src={{cat.path_url}} alt="Кошка" class="card-car__img">
+                                    <span class="card-cat__name">{{cat.name}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
 
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="card-cat">
-                            <div class="card-cat__wrapper">
-                                <img src="../static/img/cat1.png" alt="Кошка" class="card-car__img">
-                                <span class="card-cat__name">имя1</span>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
-
-
     </main>
+    <footer>
+        <div class="container">
+            <img src="static/img/paws-cat.png" alt="">
+        </div>
+    </footer>
 </body>
 
 
 <!-- Swiper JS -->
-<script src="swiper-bundle.min.js"></script>
+<script src="static/scripts/swiper-bundle.min.js"></script>
 <!-- Initialize Swiper -->
 <script>
     var swiper = new Swiper(".mySwiper", {
@@ -206,8 +187,8 @@
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
         },
-        // hideOnClick: True,
-
+        hideOnClick: false,
+        cssMode: true,
     });
 
 </script>
