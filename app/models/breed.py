@@ -16,12 +16,13 @@ def get_breed_by_name(name_bread) -> BreedModel:
     """
     По названию отдать id из бд
     """
-    # todo
-
     return session.query(BreedModel).filter(BreedModel.name == name_bread).first()
 
 
 def create_if_not_exist(name_bread):
+    """
+    Добавим новую породу в бд, если такой нет
+    """
     breed = get_breed_by_name(name_bread)
     if breed is None:
         breed = add_breed(name_bread)

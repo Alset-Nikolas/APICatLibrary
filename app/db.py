@@ -1,3 +1,4 @@
+from multiprocessing.util import LOGGER_NAME
 from sqlalchemy_utils import database_exists, create_database, drop_database
 from log import logger
 from models import Base, engine
@@ -19,7 +20,8 @@ def init_db() -> None:
     """
     Создаем таблицы
     """
-    drop_database(engine.url)
+    # drop_database(engine.url)
+
     logger.info("init data base")
     if not database_exists(engine.url):
         logger.info("create db cats.db")

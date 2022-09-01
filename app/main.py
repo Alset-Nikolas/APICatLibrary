@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 import models.cat as cat_models
 import db
 from forms.cat_form import CatForm, FlaskForm
@@ -34,4 +34,4 @@ def cat_info_route(id):
 
 if __name__ == "__main__":
     db.init_db()
-    app.run(debug=False)
+    app.run(debug=True, host="0.0.0.0", port=5000)

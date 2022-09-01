@@ -162,6 +162,10 @@ img {
     height: 100%;
 }
 
+.swiper-slide img {
+    min-height: 295px;
+}
+
 .card-cat {
     width: 100%;
     height: 100%;

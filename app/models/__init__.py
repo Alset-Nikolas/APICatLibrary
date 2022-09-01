@@ -17,16 +17,17 @@ from log import logger
 
 DATABASE = {
     "drivername": "postgresql",
-    "host": "localhost",
+    "host": "postgres",
     "port": "5432",
     "username": "postgres",
     "password": "qwerty",
-    "database": "cats.db",
+    "database": "db_cats",
 }
 Base = declarative_base()
 engine = create_engine(
     f'postgresql+psycopg2://{DATABASE["username"]}:{DATABASE["password"]}@{DATABASE["host"]}:{DATABASE["port"]}/{DATABASE["database"]}'
 )
+
 
 session = Session(bind=engine)
 

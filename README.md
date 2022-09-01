@@ -17,3 +17,40 @@
 
     Визуально проект не должен выглядеть отталкивающе. 
     Мы любим котиков :-)
+
+
+# Запуск
+    1. git clone https://github.com/Alset-Nikolas/APICatLibrary.git
+    2. docker-compose build
+    3. docker-compose up 
+    
+# Пояснение к структуре
+    application (Папка с проектом)
+        |---> dataclass (dataclass обьекты )
+        |         |-> cat.py 
+        |        
+        |---> forms (Основная форма поиска и сортировки)
+        |         |-> cat_form.py 
+        |        
+        |---> models (Взаимодействие с postgreSQL)
+        |         |-> __init__.py (создание и описание моделей)
+        |         |-> breed.py (запросы к бд про породу кота)
+        |         |-> cat.py (запросы к бд  про котов)
+        |
+        |---> static (Статические файлы)
+        |         |-> img (Картинки)
+        |         |-> scripts (JS)
+        |         |-> style (CSS)
+        |
+        |
+        |--> templates (Шаблоны)
+        |         |-> base.html (Основа)
+        |         |-> main.html (Страничка для роута /)
+        |         |-> cat_info.html (Страничка для отдельного кота /)
+        |
+        |--> db.py (Инициализация и заполнение котами бд)
+        |--> log.py (Логирование проекта)
+        |--> main.py (Основной файл запуска)
+        |--> requirements.txt (Файл с зависимостями)
+        |--> settings.txt (Файл с котами)        
+        README.md (сейчас тут)
