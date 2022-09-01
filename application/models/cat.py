@@ -40,7 +40,16 @@ def get_all_cat():
 
 
 def get_call_cat_query():
-    return session.query(CatModel)
+    return session.query(CatModel).join(BreedModel, BreedModel.id == CatModel.breed_id)
+
+
+def add_sorted(query, sorted_key: str):
+    if sorted_key == "default":
+        return query.order_by(CatModel.id)
+    elif sorted_key == "age":
+        return query.order_by(CatModel.age)
+    elif sorted_key == "breed":
+        return query.order_by(BreedModel.name)
 
 
 def get_cats_by_filters(param: typing.Dict):
@@ -57,6 +66,5 @@ def get_cats_by_filters(param: typing.Dict):
             query = query.filter(CatModel.breed_id == breed.id)
         else:
             return []
-    if param["sorted"]:
-        pass
+    query = add_sorted(query, param["sorted"])
     return query.all()
