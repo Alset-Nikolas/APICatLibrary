@@ -20,13 +20,16 @@ def init_db() -> None:
     """
     Создаем таблицы
     """
-    drop_database(engine.url)
+    try:
+        drop_database(engine.url)
+    except:
+        logger.info("db_cats delete to upgrade")
 
     logger.info("init data base")
     if not database_exists(engine.url):
-        logger.info("create db cats.db")
+        logger.info("create db_cats")
         create_database(engine.url)
         Base.metadata.create_all(engine)
         fill_db()
         return
-    logger.info("cats.db exist")
+    logger.info("db_catsexist")
