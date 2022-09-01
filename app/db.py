@@ -20,7 +20,7 @@ def init_db() -> None:
     """
     Создаем таблицы
     """
-    # drop_database(engine.url)
+    drop_database(engine.url)
 
     logger.info("init data base")
     if not database_exists(engine.url):
