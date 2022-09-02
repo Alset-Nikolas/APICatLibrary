@@ -26,4 +26,4 @@ services:
       - POSTGRES_PASSWORD=qwerty
       - POSTGRES_DB=db_cats
     ports:
-      - "5432:5432"
+      - "6000:5432"
