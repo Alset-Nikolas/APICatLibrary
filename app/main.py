@@ -25,7 +25,7 @@ def main_rout():
     return render_template("main.html", cats=cat_models.get_all_cat(), form=form), 200
 
 
-@app.route("/cat-<id>", methods=["GET"])
+@app.route("/cat-<int:id>", methods=["GET"])
 def cat_info_route(id):
     form: FlaskForm = CatForm()
     cat_obj = cat_models.get_cat_by_id(id)
