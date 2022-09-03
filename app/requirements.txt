@@ -16,3 +16,4 @@ Werkzeug==2.2.2
 WTForms==3.0.1
 zipp==3.8.1
 gunicorn==20.1.0
+# flask_whooshalchemyplus==0.7.5

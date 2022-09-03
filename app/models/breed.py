@@ -19,6 +19,19 @@ def get_breed_by_name(name_bread) -> BreedModel:
     return session.query(BreedModel).filter(BreedModel.name == name_bread).first()
 
 
+def search_breed_by_name(name_bread) -> BreedModel:
+    """
+    По названию отдать id из бд
+    """
+    return (
+        session.query(BreedModel)
+        .filter(
+            BreedModel.__ts_vector__.match(name_bread, postgresql_regconfig="russian")
+        )
+        .all()
+    )
+
+
 def create_if_not_exist(name_bread):
     """
     Добавим новую породу в бд, если такой нет
